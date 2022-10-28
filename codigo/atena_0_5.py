@@ -58,6 +58,7 @@ for i in range(0,t):
     titulo = tree.xpath('/html/body/div[3]/div/div/aside/div[4]/dl/dd/text()')
     print(titulo)
     titulo[0] = titulo[0].replace("\n\t\t\t\t\t\t\t\t\t\t", "")
+    titulo[0] = titulo[0].replace(".", "")
     d.append(titulo[0])
     print(titulo[0])
     ##-----Planilha
