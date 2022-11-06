@@ -1,0 +1,3 @@
+Após alguns testes. O código foi dividido em dois. 
+A versão Atena_1_1.py está focada em consulta na internet e salva uma planilha - dados.xlsx - com os títulos respectivos. 
+A versão Atena_1_2.py está focada para conversão dos arquivos originais.
