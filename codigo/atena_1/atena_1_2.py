@@ -18,10 +18,13 @@ ws['B1'] = "codigo"
 ws['C1'] = "Ano$Edicao"
 r = 2
 
-root = tk.Tk()
-root.withdraw()
-caminho = filedialog.askdirectory()
-
+try:
+    root = tk.Tk()
+    root.withdraw()
+    caminho = filedialog.askdirectory()
+except FileNotFoundError:
+    print("Tente uma outra vez ...")
+    
 #caminho.geometry("1020x720")
 
 
@@ -50,7 +53,15 @@ for i in range(0,t):
     name = 'https://digital.iai.spk-berlin.de/viewer/image/' + b[i] + '/1/LOG_0003/'
     print(name)
     url = requests.get(name)
-    code = url.status_code
+    j = 0
+    while j < 1:
+        code = url.status_code
+        if code == 200:
+            print("Conexão realizada com sucesso")
+            j += 1
+        else:
+            print("Tentando conectar com servidores ...")
+    
     print(code)
     tree = html.fromstring(url.content)
     titulo = tree.xpath('/html/body/div[3]/div/div/aside/div[4]/dl/dd/text()')
