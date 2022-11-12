@@ -33,6 +33,7 @@ caminho_salvar = filedialog.askdirectory()
 
 #lista dos nomes do arquivos salvo no diretório original
 lista_caminho = os.listdir(caminho)
+lista_caminho.sort()
 t = len(lista_caminho)
 #vetores suportes
 a = []
@@ -52,13 +53,19 @@ for i in range(0,t):
     name = 'https://digital.iai.spk-berlin.de/viewer/image/' + b[i] + '/1/LOG_0003/'
     print(name)
     url = requests.get(name)
-    code = url.status_code
-    print(code)
-    tree = html.fromstring(url.content)
+     j = 0
+    while j < 1:
+        code = url.status_code
+        if code == 200:
+            print("Conexão realizada com sucesso")
+            j += 1
+        else:
+            print("Tentando conectar com servidores ...")tree = html.fromstring(url.content)
     titulo = tree.xpath('/html/body/div[3]/div/div/aside/div[4]/dl/dd/text()')
     print(titulo)
     titulo[0] = titulo[0].replace("\n\t\t\t\t\t\t\t\t\t\t", "")
-    titulo[0] = titulo[0].replace(".", "")
+    titulo[0] = titulo[0].replace(".", "-")
+    titulo[0] = titulo[0].replace("/","-")
     d.append(titulo[0])
     print(titulo[0])
     ##-----Planilha
